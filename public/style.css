@@ -1,0 +1,84 @@
+/* ============================================================== */
+/* style                                                          */
+/* Styling for the personal link tree.                            */
+/* Centers the content and styles the link buttons.               */
+/* ============================================================== */
+
+/* Reset default browser margins */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9; /* A light grey background */
+  color: #333;
+  display: flex;
+  justify-content: center; /* Centers everything horizontally */
+  padding: 50px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px; /* Keeps the link tree narrow like a mobile screen */
+  text-align: center;
+}
+
+/* Profile Header Styles */
+.profile {
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; /* Makes the image a perfect circle */
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+.profile h1 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.profile p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Link Button Styles */
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Adds space between each link */
+}
+
+.link-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-decoration: none; /* Removes the underline from links */
+  color: #333;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  transition: all 0.2s ease; /* Makes hover effects smooth */
+}
+
+/* Changes the color when you hover over a link */
+.link-item:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px); /* Makes the button lift up slightly */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.click-count {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: normal;
+}
