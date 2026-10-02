@@ -34,4 +34,12 @@ Sites project: appgprj_6abfa34a2ce08191a78553a3e5aa3b90. D1 binding: DB. No exte
 
 ## Latest delivery status
 
-The revised design, public CV view/download, email action, and copy-email fallback are implemented. The two-page CV was visually reviewed. TypeScript, production build, integration tests, and PDF byte-for-byte delivery checks passed. Public access is configured, but no version has been uploaded or deployed: this session's approval policy rejected input to the publishing workflow, including a new session after explicit repository/network grants. Do not describe the expected Sites URL as live until a deployment succeeds.
+Live at https://josiah-ewumi-links.josiahewumi097.chatgpt.site with public access and owner-only management. The public profile includes CV view/download, email/copy-email, WhatsApp (+234 701 565 1489), and two CV-backed project summaries. Blue and black are the primary palette. Dark mode is the default; the theme toggle remembers the visitor's choice locally. Projects are edited in app/projects.tsx and contact details in app/contact.tsx. These contact and CV actions are direct links, not part of social-link click analytics.
+
+TypeScript, the production build, and the existing backend integration tests passed for this update. Desktop and mobile dark/light layouts and theme persistence were checked in the browser.
+
+## Alternative address investigation
+
+Cloudflare Workers offers a free workers.dev address (https://developers.cloudflare.com/workers/configuration/routing/workers-dev/), with the form worker-name.account-subdomain.workers.dev. Availability must be checked in the user's Cloudflare account; no alternate address is reserved yet. The requested .Josiah ending is not a delegated public top-level domain in IANA's list (https://data.iana.org/TLD/tlds-alpha-by-domain.txt).
+
+A move requires a Cloudflare account, a new D1 database and transfer of existing records/counts, plus replacement of Sites-provided authentication with independently verified owner authentication. Never deploy the current trusted oai-authenticated-* header logic unchanged to an untrusted origin. Keep the current production site running until the replacement passes authorization and data-preservation checks. Migration remains subject to architectural approval and account access; this update does not migrate hosting.
