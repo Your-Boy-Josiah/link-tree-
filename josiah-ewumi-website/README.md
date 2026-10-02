@@ -34,7 +34,7 @@ Sites project: appgprj_6abfa34a2ce08191a78553a3e5aa3b90. D1 binding: DB. No exte
 
 ## Latest delivery status
 
-Live at https://josiah-ewumi-links.josiahewumi097.chatgpt.site with public access and owner-only management. The public profile includes CV view/download, email/copy-email, WhatsApp (+234 701 565 1489), and two CV-backed project summaries. Blue and black are the primary palette. Dark mode is the default; the theme toggle remembers the visitor's choice locally. Projects are edited in app/projects.tsx and contact details in app/contact.tsx. These contact and CV actions are direct links, not part of social-link click analytics.
+Live at https://josiah-ewumi-links.josiahewumi097.chatgpt.site with public access and owner-only management. The public profile includes CV view/download, email/copy-email, WhatsApp (+234 701 565 1489), and five project summaries based on the CV and owner confirmations, plus professional experience highlights. Blue and black are the primary palette. Dark mode is the default; the theme toggle remembers the visitor's choice locally. Projects are edited in app/projects.tsx and contact details in app/contact.tsx. These contact and CV actions are direct links, not part of social-link click analytics.
 
 TypeScript, the production build, and the existing backend integration tests passed for this update. Desktop and mobile dark/light layouts and theme persistence were checked in the browser.
 
