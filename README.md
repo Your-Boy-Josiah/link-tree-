@@ -1,71 +1,20 @@
-# Josiah Ewumi — Portfolio & Link Tree
+# Josiah Ewumi — Linktree and Portfolio
 
-[Visit my website](https://yb-josiah-gy-projects.josiahewumi097.chatgpt.site)
+The repository contains two independent applications. Frontend/ is the Next.js site for Vercel. Backend/ is the Express API for Render. Read each folder's README for commands.
 
-My projects, experience, graduation photos, CV, and contact details in one place. Visitors can reach me through email or WhatsApp and find my LinkedIn, GitHub, and TikTok profiles.
+## MongoDB and private settings
 
-## Features
+Create a MongoDB Atlas cluster and a database user. Copy the connection string into Render's MONGODB_URI setting. In Atlas Network Access, allow the outbound IP ranges shown on the Render service page under Connect, Outbound. Use a strong database password, and URL-encode special characters inside the connection string.
 
-- Blue and black design with dark and light themes.
-- Project descriptions with my contributions and links to code.
-- CV with view and download options.
-- Owner dashboard at /admin to add links and change their visibility.
-- Persistent social-link click counts and owner-only private links.
+Render also needs OWNER_EMAIL (josiahewumi097@gmail.com), a unique strong ADMIN_PASSWORD, a random SESSION_SECRET of at least 32 characters, and FRONTEND_ORIGIN (the exact Vercel site origin). Set NODE_ENV to production on Render; Render supplies PORT. Vercel needs BACKEND_URL, set to the Render service URL. Keep these values in the hosting dashboards or ignored local environment files; never commit real secrets.
 
-## Structure
+## First deployment order
 
-The application code is separated by responsibility. Shared package and build configuration stays at the root so one install runs the whole application.
+1. Create the Render service from Backend/. For the initial deploy, set FRONTEND_ORIGIN to a valid temporary URL such as https://example.vercel.app.
+2. Create the Vercel project from Frontend/, choose Next.js, use npm install and npm run build, and leave the output directory at Next.js default. Initially set BACKEND_URL to the Render service URL. Vercel gives the project its vercel.app address.
+3. Set Render's FRONTEND_ORIGIN to that exact Vercel address and redeploy Render.
+4. Verify owner sign-in, public links, private links, editing, and click tracking. Then share your new Vercel address.
 
-| Folder | Purpose |
-| --- | --- |
-| `Frontend/app` | Pages, styles, contact actions, and thin framework route connectors |
-| `Frontend/components`, `Frontend/hooks`, `Frontend/lib` | UI components, hooks, and display utilities |
-| `Frontend/public` | CV, graduation photos, and other public assets |
-| `Backend/routes` | API handlers and tracked-link redirects |
-| `Backend/auth`, `Backend/lib` | Authentication, owner checks, validation, storage, and connector services |
-| `Backend/db`, `Backend/drizzle` | Database schema and migrations |
-| `Backend/build` | Worker entry point and runtime build plugins |
-| `Backend/tests` | Local integration checks |
-| `config` | Hosting settings |
-| `scripts` | Shared development commands and CV generation |
-| `Backend/legacy`, `Frontend/legacy` | Previous Express server and browser files, preserved for reference |
+The new database seeds LinkedIn, GitHub, and TikTok if those entries are missing. It does not copy custom links, visibility settings, or click counts from the former Sites D1 database. Export those records before switching if you want to retain them. The owner dashboard now uses a separate admin password and signed session.
 
-The two `route.ts` files under `Frontend/app` only re-export handlers from `Backend/routes`. Vinext requires these files to discover URLs. Server-rendered pages call backend services, while database access and authentication remain on the server. This is one full-stack application, not two independently deployed services.
-
-## Run locally
-
-Requires Node.js 22.13 or newer.
-
-1. Run npm ci.
-2. Set OWNER_EMAIL=seedy@sites.test in an ignored .env file for the local simulated owner.
-3. Run `npm run db:migrate:local` to initialize the local database.
-4. Run npm run dev and open http://127.0.0.1:5173.
-5. Open /admin to manage local links.
-
-The local preview has its own D1 database. Production uses verified ChatGPT sign-in and a secret OWNER_EMAIL setting. Never enable the development identity on a public deployment.
-
-## Checks
-
-- Type check: npm run typecheck
-- Production build: npm run build
-- Backend checks, with the local preview running: npm run test:integration
-
-Backend checks cover owner access, visibility, click counting, URL validation, and request protection. They create a disposable private link in the local database.
-
-## Make changes
-
-- Introduction and experience: Frontend/app/page.tsx
-- Projects: Frontend/app/projects.tsx
-- Contact details: Frontend/app/contact.tsx
-- Appearance: Frontend/app/globals.css
-- Social links: owner dashboard
-
-To rebuild the CV, install reportlab and pypdf, then run python scripts/build_cv.py. Inspect both PDF pages before publishing.
-
-## Hosting and data
-
-Sites hosts the website using a Cloudflare Worker and D1 database. Configuration lives in `config/hosting.json`; builds copy it and the database migrations to `dist/config`. This repository does not create an OpenAI-named directory. The existing hosted website remains on its current deployment. The Sites publishing helper expects its original metadata layout, so it cannot directly publish this reorganized checkout without a deployment integration update. Building locally does not publish the website.
-
-The application stores link records and aggregate click counts. Counts include repeat visits and bots and do not measure unique people. CV and contact actions do not use this counter.
-
-Changing hosts requires a database transfer and replacement for Sites authentication. This host assigns the .chatgpt.site address. A custom domain requires a domain the owner controls.
+The former Express prototype remains under Backend/legacy with its old browser files in Frontend/legacy; neither folder powers the new deployment.
