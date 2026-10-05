@@ -11,7 +11,7 @@ from reportlab.lib.pagesizes import A4
 from pypdf import PdfReader
 from xml.sax.saxutils import escape
 root=Path(__file__).resolve().parents[1]
-out=Path(sys.argv[1]) if len(sys.argv)>1 else root/'public'/'documents'/'josiah-ewumi-cv.pdf'
+out=Path(sys.argv[1]) if len(sys.argv)>1 else root/'Frontend'/'public'/'documents'/'josiah-ewumi-cv.pdf'
 out.parent.mkdir(parents=True,exist_ok=True)
 navy=HexColor('#101B30');gray=HexColor('#465269');blue=HexColor('#2456BA')
 styles={

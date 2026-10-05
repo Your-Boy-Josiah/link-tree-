@@ -24,7 +24,10 @@
     ],
     "paths": {
       "@/*": [
-        "./*"
+        "./Frontend/*"
+      ],
+      "@backend/*": [
+        "./Backend/*"
       ]
     },
     "types": [
@@ -42,6 +45,9 @@
   ],
   "exclude": [
     "node_modules",
-    "examples"
+    "Backend/examples",
+    "Backend/legacy",
+    "Frontend/legacy",
+    "dist"
   ]
 }
