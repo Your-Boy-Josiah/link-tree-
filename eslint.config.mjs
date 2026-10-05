@@ -5,16 +5,17 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+  { rules: { "@next/next/no-html-link-for-pages": ["error", "Frontend/app"] } },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
-    "build/**",
+    "Backend/build/**", "Backend/legacy/**", "Frontend/legacy/**",
     "next-env.d.ts",
   ]),
   {
-    files: ["components/ui/**/*.{ts,tsx}", "hooks/use-mobile.ts"],
+    files: ["Frontend/components/ui/**/*.{ts,tsx}", "Frontend/hooks/use-mobile.ts"],
     rules: {
       // These files are vendored verbatim from shadcn@4.17.0. Keep the
       // registry source intact while applying the stricter rules to Site code.
