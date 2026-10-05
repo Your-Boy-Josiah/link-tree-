@@ -1,6 +1,6 @@
 import { LinkIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { connectorErrorRecovery } from "@backend/lib/connector-errors.mjs";
+
 
 /** Render in the affected feature, leaving the rest of the Site usable. */
 export function ConnectorError({
@@ -12,7 +12,7 @@ export function ConnectorError({
   connectorName: string;
   reconnectHref: string;
 }) {
-  const recovery = connectorErrorRecovery(error, connectorName, reconnectHref);
+  const recovery = { message: error.message || `Could not connect to ${connectorName}.`, action: reconnectHref ? { href: reconnectHref, label: `Reconnect ${connectorName}` } : null };
   return (
     <div
       role="alert"

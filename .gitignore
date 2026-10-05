@@ -47,3 +47,13 @@ next-env.d.ts
 
 *.tsbuildinfo
 !.env.example
+
+# Separate Vercel and Render apps
+Frontend/node_modules/
+Frontend/.next/
+Backend/node_modules/
+Backend/.env
+Backend/.env.*
+!Backend/.env.example
+Frontend/.env.local
+Frontend/.env.*.local
